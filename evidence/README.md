@@ -9,7 +9,7 @@
 | `generality-software/` | 软件项目启动框架产物（仅三核心文件） |
 | `merge/` | 已有规则仓库的局部合并：before / after / NOTES.md（diff 显示原规则零删除） |
 | `relay/` | 接力实测：`fixture-before/`（预埋过时记录、缺证据、阻塞任务、外部动作结果不明四类陷阱）、`result-diff.txt`、`last-message.md`、`prompt.txt` |
-| `partial-records/` | 部分记录（仅有 AGENTS.md + TODO.md）补齐路径实测 |
+| `partial-records/` | 部分记录（仅有 AGENTS.md + TODO.md）补齐路径实测：`fixture-before/`、完整 `after/` 快照、`result-diff.txt`（`-N` 模式，含新建 PROJECT.md 全文）、`last-message.md`、`prompt.txt` |
 | `fact-labeling/` | 用户未核实说法的信息分级实测 |
 | `external-review-2026-10-04.md` | 第三方审查报告脱敏转载 |
 

@@ -71,6 +71,17 @@ if extra:
 else:
     passed.append("references 仅含 md 文档")
 
+# 规范一致性（回归检查）：废弃措辞不得再出现在规范文档中
+obsolete = ["以实际为准", "产物路径 + 验证命令或输出", "验证命令或输出，或用户确认"]
+normative = [SKILL, SKILL_DIR / "README.md"] + sorted((SKILL_DIR / "references").glob("*.md"))
+for f in normative:
+    text = f.read_text(encoding="utf-8")
+    hits = [o for o in obsolete if o in text]
+    if hits:
+        issues.append(f"{f.name} 仍含废弃规则措辞: {hits}")
+    else:
+        passed.append(f"{f.name} 无废弃规则措辞")
+
 print("== PASS ==")
 for p in passed:
     print(" +", p)
