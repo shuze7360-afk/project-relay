@@ -25,7 +25,7 @@
 | 3 | 接力（收紧规则后） | 接棒者发现"记录称测试已通过、实际仅 2 用例且 1 失败"；修正并补用例；完成条目附实际执行结果（`Ran 4 tests`、`OK`、退出码 0），并对 README 示例实际运行留证；阻塞任务（PyPI 发布）未触碰；无编号的外部 CI 动作不重复执行、查不到回执如实记录 | 通过 | `relay/` |
 | 4 | 部分记录补齐 | 目录仅有 AGENTS.md + TODO.md 时：不执行业务（`build/` 未产生、业务代码与数据未动）；TODO.md 按实际用途映射为唯一状态源（未新建重复 STATE.md，映射写入 AGENTS.md）；原 `[x]` 勾选因无运行证据降级为"待验收"；下一步四要素齐全 | 通过 | `partial-records/`（fixture-before + 完整 after 快照，result-diff 含新建 PROJECT.md 全文） |
 | 5 | 事实标注 | 用户转述的"快排一定比冒泡快得多"标为【用户提供·未核实】并改写为待验证主张；方案保留两种算法公平对比，用户偏好记录为【用户要求】；未编造数据；只建三文件框架 | 通过 | `fact-labeling/` |
-| 6 | 映射服从（含过期证据反例） | 状态=TODO.md、定义=BRIEF.md 的项目：接棒者按映射读取三个记录；实跑 `python verify.py` 得 `expected=60 actual=30`、退出码 1，据此把标记"完成"的任务降级为未通过并附本次实际结果与业务文件 SHA-256 前后比对；**仅更新 TODO.md**，未新建 STATE.md/PROJECT.md，未动 data.csv/report.txt/verify.py；新下一步四要素且以"取得修改业务文件授权"为前提 | 通过 | `mapped-records/`（fixture-before + after + result-diff + last-message） |
+| 6 | 映射服从（含过期证据反例） | 状态=TODO.md、定义=BRIEF.md 的项目：接棒者按映射读取三个记录；实跑 `python verify.py` 得 `expected=60 actual=30`、退出码 1，据此把标记"完成"的任务降级并附本次实际结果与业务文件 SHA-256 前后比对；**仅更新 TODO.md**，未新建 STATE.md/PROJECT.md，未动 data.csv/report.txt/verify.py；新下一步四要素且以"取得修改业务文件授权"为前提。**已知偏差（三次审查指出）：模型原始输出把任务状态写作"未通过（待修复）"，超出五态——原始输出原样保留于 `after/TODO.md`，合规写法见人工修订示例 `after-revised-TODO.md`，规范已补"核验未通过的记法"条款** | 通过（含已注明的状态措辞偏差） | `mapped-records/`（fixture-before + after + after-revised-TODO.md + result-diff + last-message） |
 
 ## 历史记录（v1.0，2026-10-04）
 
@@ -56,16 +56,29 @@
 
 审查方本轮独立验证：映射项目组合反例（状态=TODO.md、定义=BRIEF.md、输入变化导致旧证据过期）通过——执行者实跑校验得 expected=60 actual=30、退出码 1，任务退回待验收，未双写状态文件。仓库作者在 v1.2 规则文本上复现同场景，结果一致（上表 #6）。报告脱敏转载：[evidence/external-review-2-2026-10-04.md](evidence/external-review-2-2026-10-04.md)。
 
+## 外部审查：第三轮（2026-10-04）
+
+对象为提交 d207559（v1.2）。**结论：上轮三项修正全部通过复查，无新的阻塞项。** 两项收尾处置：
+
+| 三轮意见 | 处置 |
+|---|---|
+| P3 映射样例任务状态"未通过（待修复）"超出五态 | 原始输出原样保留（不改原始证据）；新增明确标记的人工修订示例 `mapped-records/after-revised-TODO.md`（合规写法：待验收 + 备注，或阻塞）；规范三处补"核验未通过的记法"条款（SKILL 维护段、file-conventions 最低规则集与措辞纪律），防止生成项目复制此偏差 |
+| 非阻塞：SKILL/README 零散位置仍写固定文件名 | 改为职责代称（"定义记录""状态记录"，默认名仅在定义处出现），避免分段复制时丢失映射上下文 |
+
+审查方独立核验（61 个跟踪文件哈希比对、部分记录 diff 内存重建逐行一致、映射样例业务文件未动且 verify 结果与保存证据一致）记录于 [evidence/external-review-3-checks.json](evidence/external-review-3-checks.json)，报告脱敏转载见 [evidence/external-review-3-2026-10-04.md](evidence/external-review-3-2026-10-04.md)。审查同时确认：此前"接力成功"实测归属当时版本，未被改称为 v1.2 新实测。
+
 ## 版本与调用条件
 
-规范文件 SHA-256（v1.2 工作区文件，对应 git 历史中的 v1.2 提交）：
+规范文件 SHA-256（v1.3 工作区文件，对应 git 历史中的 v1.3 提交）：
 
 ```
-339e94d26364de878b29ab03dcc83e0e318cdfad41ce3ffdbb5ecd9c5c991db0  SKILL.md
-773be939beef20c2d136b2733a1800a8d2334eb44f76a9b453d74b5c11441724  README.md
-ea3bf63b4d5d0d54638823c14bedce0a3b2a6e2962986db53a50c0427463760a  references/file-conventions.md
+a589be0c3f9744ea1c3918d728c90e879d3bf812b1eca42c8469cd26f49b81a7  SKILL.md
+8877b8928d7dfdbcecac279e85da0926f4612e6b9cf14c82bbff01e48c0619f5  README.md
+d5e72530fab43bcf0980fa67bf018dca99ec541c8a69c7ed8c48395e0ff06b30  references/file-conventions.md
 93e7741486fe4055381d688e5bc3a30480cb2e13ae841671806f6a177b483b99  references/sources.md
 ```
+
+注意：#3/#4/#5 行为实测的被测规则版本为 v1.1 文本（哈希见外部审查 checks 记录），#6 的被测规则版本为 v1.2 文本（SKILL SHA-256 7ED00B60…，见二轮审查报告）；v1.3 仅统一职责代称与补"核验未通过记法"，未改变上述行为路径的规则语义，故未重跑。
 
 行为验证的版本与调用条件：
 
